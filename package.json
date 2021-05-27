@@ -4,7 +4,10 @@
   "description": "Serverless aws-nodejs-typescript template",
   "main": "serverless.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "sls deploy -v",
+    "deploy-function": "sls deploy function -f",
+    "local-invoke": "sls invoke local --stage dev -l",
+    "invoke": "sls invoke --stage dev -l"
   },
   "engines": {
     "node": ">=14.15.0"
@@ -12,7 +15,10 @@
   "dependencies": {
     "@middy/core": "^1.5.2",
     "@middy/http-json-body-parser": "^1.5.2",
+    "@types/lodash": "^4.14.170",
+    "aws-sdk": "^2.916.0",
     "lodash": "^4.17.21",
+    "moment-timezone": "^0.5.33",
     "source-map-support": "^0.5.19"
   },
   "devDependencies": {

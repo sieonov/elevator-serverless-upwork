@@ -1,6 +1,6 @@
 import type { APIGatewayProxyEvent, APIGatewayProxyResult, Handler } from "aws-lambda"
 import type { FromSchema } from "json-schema-to-ts";
-import isEmpty from 'lodash/get';
+import isEmpty from 'lodash/isEmpty';
 
 type ValidatedAPIGatewayProxyEvent<S> = Omit<APIGatewayProxyEvent, 'body'> & { body: FromSchema<S> }
 export type ValidatedEventAPIGatewayProxyEvent<S> = Handler<ValidatedAPIGatewayProxyEvent<S>, APIGatewayProxyResult>
@@ -22,14 +22,5 @@ export const formatJSONResponse = ({ headers, statusCode, response }: IResponse)
       ...headers,
     },
     body: typeof response === 'string' ? response : JSON.stringify(response),
-  }
-}
-
-
-
-export const formatJSONResponse = (response: Record<string, unknown>) => {
-  return {
-    statusCode: 200,
-    body: JSON.stringify(response)
   }
 }

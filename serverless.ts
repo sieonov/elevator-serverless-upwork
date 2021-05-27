@@ -1,6 +1,6 @@
 import type { AWS } from '@serverless/typescript';
 
-import { hello } from './src/functions';
+import { addElevator, getElevators } from './src/functions';
 
 const serverlessConfiguration: AWS = {
   service: 'elevator-backend',
@@ -22,9 +22,22 @@ const serverlessConfiguration: AWS = {
     environment: {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
     },
+    iam: {
+      role: {
+        statements: [
+          {
+            Effect: "Allow",
+            Action: [ "s3:PutObject", "s3:GetObject" ],
+            Resource:[
+              "arn:aws:s3:::elevator-data-json/*"
+            ],
+          },
+        ],
+      },
+    },
     lambdaHashingVersion: '20201221',
   },
-  functions: { hello }
+  functions: { addElevator, getElevators }
 }
 
 module.exports = serverlessConfiguration;
