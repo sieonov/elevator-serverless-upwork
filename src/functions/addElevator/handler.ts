@@ -32,8 +32,8 @@ const addElevator: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (ev
     const device = get(body, 'device');
     const carDoorOpenings = get(body, 'carDoorOpenings');
     const link = get(body, 'link');
-    const date = moment().tz('America/Los_Angeles').format('yyyy-MM-DD');
-    const time = moment().tz('America/Los_Angeles').format('hh:mm:ss');
+    const date = moment().tz('America/New_York').format('yyyy-MM-DD');
+    const time = moment().tz('America/New_York').format('hh:mm:ss');
     logging('AddElevator', 'Fetching elevator list from S3');
     let elevators = await getJSONFromS3();
     elevators = JSON.parse(get(elevators, 'Body')) || [];

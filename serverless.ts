@@ -1,6 +1,6 @@
 import type { AWS } from '@serverless/typescript';
 
-import { addElevator, getElevators } from './src/functions';
+import { addElevator, getElevators, clearElevators } from './src/functions';
 
 const serverlessConfiguration: AWS = {
   service: 'elevator-backend',
@@ -37,7 +37,7 @@ const serverlessConfiguration: AWS = {
     },
     lambdaHashingVersion: '20201221',
   },
-  functions: { addElevator, getElevators }
+  functions: { addElevator, getElevators, clearElevators }
 }
 
 module.exports = serverlessConfiguration;
